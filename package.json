@@ -1,0 +1,25 @@
+{
+  "name": "node-pin",
+  "version": "0.1.0",
+  "description": "A simple crypto-safe PIN code generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SylonZero/node-pin.git"
+  },
+  "keywords": [
+    "Pin",
+    "Crypto-util",
+    "Security",
+    "Utility"
+  ],
+  "author": "Sai Prakash S. <sylonzero@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SylonZero/node-pin/issues"
+  },
+  "homepage": "https://github.com/SylonZero/node-pin#readme"
+}
