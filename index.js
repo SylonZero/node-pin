@@ -19,9 +19,9 @@ function generateRandPin(pinLength, callback) {
     // Currently, PIN length is limited to 10 chars (practical limitation, as it covers most use cases)
     if(isNaN(pinLength) || pinLength > 10) {
         if(asyncMode) {
-            callback("Node-Pin invalid argument error: must be a number or less than 10.", null);
+            return callback("Node-Pin invalid argument error: must be a number or less than or equal to 10.", null);
         } else {
-            throw(new Error("Node-Pin invalid argument error: must be a number or less than 10."))
+            throw(new Error("Node-Pin invalid argument error: must be a number or less than or equal to 10."))
         }
     }
 
@@ -33,7 +33,7 @@ function generateRandPin(pinLength, callback) {
             }
 
             const token = parseInt(buffer.toString('hex'), 16);    
-            callback(token.toString().substr(0, pinLength));
+            callback(null, token.toString().substr(0, pinLength));
           });
     } else {
         token = parseInt(crypto.randomBytes(4).toString('hex'), 16);
