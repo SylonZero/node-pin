@@ -25,9 +25,9 @@ function generateRandPin(pinLength, callback) {
         }
     }
 
-    // Using 4 bytes to generate a Hex string with an upper limit of 4294967295
+    // Using 6 bytes to generate a Hex string with a numerical upper limit of 281474976710655 to allow for enough digits
     if(asyncMode) {
-        crypto.randomBytes(4, function(err, buffer) {
+        crypto.randomBytes(6, function(err, buffer) {
             if(err) {
                 return callback(err, null);
             }
@@ -36,7 +36,7 @@ function generateRandPin(pinLength, callback) {
             callback(null, token.toString().substr(0, pinLength));
           });
     } else {
-        token = parseInt(crypto.randomBytes(4).toString('hex'), 16);
+        token = parseInt(crypto.randomBytes(6).toString('hex'), 16);
         if(token) {
             return token.toString().substr(0, pinLength);
         } else {
