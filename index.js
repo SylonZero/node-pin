@@ -17,11 +17,11 @@ function generateRandPin(pinLength, callback) {
         token = null;
 
     // Currently, PIN length is limited to 10 chars (practical limitation, as it covers most use cases)
-    if(isNaN(pinLength) || pinLength > 10) {
+    if(isNaN(pinLength) || pinLength < 1 || pinLength > 10) {
         if(asyncMode) {
-            return callback("Node-Pin invalid argument error: must be a number or less than or equal to 10.", null);
+            return callback("Node-Pin invalid argument error: PIN length must be a number between 1 and 10.", null);
         } else {
-            throw(new Error("Node-Pin invalid argument error: must be a number or less than or equal to 10."))
+            throw(new Error("Node-Pin invalid argument error: PIN length must be a number between 1 and 10."))
         }
     }
 
