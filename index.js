@@ -21,7 +21,7 @@ function generateRandPin(pinLength, callback) {
         if(asyncMode) {
             return callback("Node-Pin invalid argument error: PIN length must be a number between 1 and 10.", null);
         } else {
-            throw(new Error("Node-Pin invalid argument error: PIN length must be a number between 1 and 10."))
+            throw(new Error("Node-Pin invalid argument error: PIN length must be a number between 1 and 10."));
         }
     }
 
@@ -32,11 +32,12 @@ function generateRandPin(pinLength, callback) {
                 return callback(err, null);
             }
 
-            const token = parseInt(buffer.toString('hex'), 16);    
+            token = parseInt(buffer.toString('hex'), 16);    
             callback(null, token.toString().substr(0, pinLength));
           });
     } else {
         token = parseInt(crypto.randomBytes(6).toString('hex'), 16);
+        
         if(token) {
             return token.toString().substr(0, pinLength);
         } else {
