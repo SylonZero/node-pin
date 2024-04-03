@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Sai Prakash S.
+ * Copyright 2024 Sai Prakash S.
  *
  * Licensed under the MIT License (the "License")
  * You may not use this file except in compliance with the License.
@@ -10,40 +10,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var crypto = require('crypto');
+const crypto = require('crypto');
 
-function generateRandPin(pinLength, callback) {    
-    var asyncMode = (callback && typeof callback === 'function'),
-        token = null;
-
-    // Currently, PIN length is limited to 10 chars (practical limitation, as it covers most use cases)
-    if(isNaN(pinLength) || pinLength < 1 || pinLength > 10) {
-        if(asyncMode) {
-            return callback("Node-Pin invalid argument error: PIN length must be a number between 1 and 10.", null);
-        } else {
-            throw(new Error("Node-Pin invalid argument error: PIN length must be a number between 1 and 10."));
+/**
+ * Generates a secure random PIN of specified length.
+ * @param {number} pinLength - The desired length of the PIN.
+ * @returns {Promise<string>} A promise that resolves to the generated PIN.
+ */
+function generateRandPin(pinLength) {
+    return new Promise((resolve, reject) => {
+        // Validate pinLength is within the desired range
+        if (!Number.isInteger(pinLength) || pinLength < 1 || pinLength > 10) {
+            reject(new Error("PIN length must be an integer between 1 and 10."));
+            return;
         }
-    }
 
-    // Using 6 bytes to generate a Hex string with a numerical upper limit of 281474976710655 to allow for enough digits
-    if(asyncMode) {
-        crypto.randomBytes(6, function(err, buffer) {
-            if(err) {
-                return callback(err, null);
+        crypto.randomBytes(6, (err, buffer) => {
+            if (err) {
+                reject(new Error("Failed to generate random bytes."));
+                return;
             }
 
-            token = parseInt(buffer.toString('hex'), 16);    
-            callback(null, token.toString().substr(0, pinLength));
-          });
-    } else {
-        token = parseInt(crypto.randomBytes(6).toString('hex'), 16);
-        
-        if(token) {
-            return token.toString().substr(0, pinLength);
-        } else {
-            throw(new Error("Node-Pin error: failed to generate a random buffer for the PIN code."));
-        }        
-    }
+            let pin = parseInt(buffer.toString('hex'), 16).toString();
+            // Ensure the PIN is not shorter than the desired length due to leading zeros
+            if (pin.length < pinLength) {
+                pin = pin.padStart(pinLength, '0');
+            }
+            resolve(pin.substring(0, pinLength));
+        });
+    });
 }
 
-exports = module.exports = {generateRandPin: generateRandPin};
+module.exports = { generateRandPin };
