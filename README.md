@@ -1,43 +1,49 @@
-# node-pin
+# node-pin: Secure OTP Generation for Email Verification and More
 
-A simple crypto-safe PIN code generator for Node.js
+The `node-pin` module offers a robust and secure solution for generating One-Time Passwords (OTPs), tailored specifically for authentication processes such as email verification. Built with security and ease of integration in mind, this library leverages Node.js's cryptographic modules to produce unpredictable and secure PINs, suitable for a wide array of verification and authentication scenarios.
 
-Requires Node >=6.0.0.
+### Features:
 
-## Installation
+- **Secure Random PIN Generation**: Utilizes Node.js's `crypto` module to ensure each PIN is cryptographically secure, making them ideal for sensitive authentication tasks.
+- **Flexible Length Configuration**: Generate PINs of any length between 1 and 10 digits, allowing for customization based on the security requirements of your application.
+- **Promise-based API**: Designed with modern asynchronous patterns in mind, `node-pin` supports both callback and Promise-based workflows, ensuring seamless integration into contemporary Node.js applications.
+- **Simplified Integration**: With minimal setup required, integrating `node-pin` into your project is straightforward, enabling you to add OTP generation functionality quickly and efficiently.
+- **Versatile Use Cases**: While optimized for email verification, the `node-pin` module can be easily adapted for SMS verification, two-factor authentication (2FA), and other scenarios where OTPs are essential.
+
+### Getting Started:
+
+To begin using `node-pin` in your project, simply install the package using npm:
 
 ```bash
-npm install node-pin
+npm install node-pin --save
 ```
 
-## Examples
+Then, generate a PIN by specifying the desired length:
 
-```js
-const nodePin = require('node-pin');
+```javascript
+const { generateRandPin } = require('node-pin');
 
-// Generate a 6-digit PIN
-let pinCode6 = nodePin.generateRandPin(6);
-console.log('6-Digit PIN generated:', pinCode6);
-
-// Generate an 8-digit PIN
-let pinCode8 = nodePin.generateRandPin(8);
-console.log('8-Digit PIN generated:', pinCode8);
-
-// Async invocation - generate a 10-digit PIN with a callback supplied
-nodePin.generateRandPin(10, (err, asyncPinCode)=> {
-    if(err) return console.log(err);
-    console.log('10-digit PIN generated:', asyncPinCode);
+generateRandPin(6).then(pin => {
+  console.log(`Your OTP: ${pin}`);
+}).catch(err => {
+  console.error(err);
 });
 ```
 
-## Usage
+Callback example:
 
-### Functions
+```javascript
+const { generateRandPin } = require('node-pin');
 
-#### `generateRandPin(pinLength, [callback])`
+// Callback function to handle the result
+function pinCallback(err, pin) {
+  if (err) {
+    console.error("An error occurred:", err);
+    return;
+  }
+  console.log(`Your OTP: ${pin}`);
+}
 
-Generates a random PIN code of the specified `pinLength`, and calls the callback if any. Returns the PIN code synchronously if no callback is provided. 
-
-* `pinLength` - Number: A number specifying the length of the PIN to generate. Valid values are from 1 to 10.
-* `callback` - (Optional) Function: Called with `(err, pin)` once the request has completed. `err` contains an error, if any, and `pin` contains the string PIN code generated.
-
+// Generate a 6-digit PIN using the callback
+generateRandPin(6, pinCallback);
+```
