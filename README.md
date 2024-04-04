@@ -2,8 +2,9 @@
 
 The `node-pin` module offers a robust and secure solution for generating One-Time Passwords (OTPs), tailored specifically for authentication processes such as email verification. Built with security and ease of integration in mind, this library leverages Node.js's cryptographic modules to produce unpredictable and secure PINs, suitable for a wide array of verification and authentication scenarios.
 
-### Features:
+## Random Pin Generator
 
+### Features:
 - **Secure Random PIN Generation**: Utilizes Node.js's `crypto` module to ensure each PIN is cryptographically secure, making them ideal for sensitive authentication tasks.
 - **Flexible Length Configuration**: Generate PINs of any length between 1 and 50 digits, allowing for customization based on the security requirements of your application.
 - **Promise-based API**: Designed with modern asynchronous patterns in mind, `node-pin` supports both callback and Promise-based workflows, ensuring seamless integration into contemporary Node.js applications.
@@ -31,7 +32,7 @@ RandomPinGenerator.generate(20).then(pin => {
 });
 ```
 
-Callback example:
+### Callback example:
 
 ```javascript
 const { RandomPinGenerator } = require('node-pin');
@@ -44,4 +45,35 @@ RandomPinGenerator.generateWithCallback(6, (err, pin) => {
     }
     console.log(`Generated PIN: ${pin}`);
 });
+```
+
+## SeededRandomGenerator
+
+Provides a seeded random number generator capable of producing a consistent sequence of pseudo-random numbers, bytes, and hex strings based on a provided seed. This is particularly useful for scenarios requiring reproducible results.
+
+### Features
+
+- Generate random bytes with a given size.
+- Produce random hex strings.
+- Generate random numbers within a specified range.
+
+### Usage
+
+Creating an instance and generating seeded random data:
+
+```javascript
+const { SeededRandomGenerator } = require('my-library-name');
+const generator = new SeededRandomGenerator('my-seed');
+
+// Generate random bytes
+const bytes = generator.generateRandomBytes(10);
+console.log(bytes);
+
+// Generate a random hex string
+const hexString = generator.getRandomHex(4);
+console.log(hexString);
+
+// Generate a random number within a range
+const randomNumber = generator.getRandomNumber(1, 100);
+console.log(randomNumber);
 ```
