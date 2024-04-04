@@ -1,7 +1,7 @@
 const RandomPinGenerator = require('./lib/RandomPinGen');
-const SeededRandomGeneratoor = require('./lib/SeededRandomGen');
+const SeededRandomGenerator = require('./lib/SeededRandomGen');
 
 module.exports = {
     RandomPinGenerator,
-    SeededRandomGeneratoor
+    SeededRandomGenerator
 };

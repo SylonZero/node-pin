@@ -62,7 +62,7 @@ Provides a seeded random number generator capable of producing a consistent sequ
 Creating an instance and generating seeded random data:
 
 ```javascript
-const { SeededRandomGenerator } = require('my-library-name');
+const { SeededRandomGenerator } = require('node-pin');
 const generator = new SeededRandomGenerator('my-seed');
 
 // Generate random bytes
