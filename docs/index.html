@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node-Pin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Node-Pin: Secure OTP/PIN Generation for Email Verification and More</h1>
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#contributing">Contributing</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Adding the GitHub Repo link -->
+        <a href="https://github.com/SylonZero/node-pin" class="github-corner" aria-label="View source on GitHub">
+            <!-- GitHub corner SVG here -->
+        </a>
+        <!-- Styles for the GitHub corner SVG -->
+        <style>
+            .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+            @keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+            @media (max-width:500px){.github-corner:hover .octo-arm{animation:none}}
+        </style>
+
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Node-Pin is a simple library designed for generating random PINs and seeded random data in Node.js applications. 
+              It offers flexibility for both secure random PIN generation and deterministic outcomes for testing or simulations.</p>
+        </section>
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li>Random PIN Generation: Generate cryptographically secure random PINs of any specified length up to 50 characters.</li>
+                <li>Seeded Random Data Generation: Produce consistent sequences of random data based on a provided seed, useful for deterministic outcomes.</li>
+            </ul>
+        </section>
+        <section id="installation">
+            <h2>Installation</h2>
+            <p>To install Node-Pin in your project, run the following command:</p>
+            <pre><code>npm install node-pin</code></pre>
+        </section>
+        <section id="usage">
+            <h2>Usage</h2>
+            <h3>RandomPinGenerator</h3>
+            <p>Generate a 6-digit PIN:</p>
+            <pre><code>const { RandomPinGenerator } = require('node-pin');
+RandomPinGenerator.generate(6).then(pin => console.log(`Generated PIN: ${pin}`));</code></pre>
+            <h3>SeededRandomGenerator</h3>
+            <p>Generate seeded random data:</p>
+            <pre><code>const { SeededRandomGenerator } = require('node-pin');
+const generator = new SeededRandomGenerator('my-seed');
+console.log(generator.getRandomHex(4));
+console.log(generator.getRandomNumber(1, 100));</code></pre>
+        </section>
+        <section id="contributing">
+            <h2>Contributing</h2>
+            <p>Contributions to Node-Pin are welcome! Please read the contribution guidelines on our GitHub repository.</p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
