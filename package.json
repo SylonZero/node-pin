@@ -1,6 +1,6 @@
 {
   "name": "node-pin",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Secure OTP Generation for Email Verification and More",
   "main": "index.js",
   "scripts": {
@@ -26,5 +26,8 @@
   "homepage": "https://github.com/SylonZero/node-pin#readme",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "seedrandom": "^3.0.5"
   }
 }
