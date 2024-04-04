@@ -1,7 +1,7 @@
 {
   "name": "node-pin",
   "version": "0.1.5",
-  "description": "A simple crypto-safe PIN code generator",
+  "description": "Secure OTP Generation for Email Verification and More",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -12,9 +12,11 @@
   },
   "keywords": [
     "Pin",
+    "OTP",
     "Crypto-util",
     "Security",
-    "Utility"
+    "Utility",
+    "Email-Verification"
   ],
   "author": "Sai Prakash S. <sylonzero@gmail.com>",
   "license": "MIT",
