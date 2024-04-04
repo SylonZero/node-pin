@@ -1,6 +1,6 @@
 {
   "name": "node-pin",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Secure OTP Generation for Email Verification and More",
   "main": "index.js",
   "scripts": {
